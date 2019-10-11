@@ -30,7 +30,7 @@
 #include "Application.h"
 
 
-CommonExampleInterface* app;
+Application* app;
 
 b3MouseMoveCallback prevMouseMoveCallback = 0;
 static void on_mouse_move(float x, float y)
@@ -93,8 +93,7 @@ int main(int argc, char* argv[])
 	app = new Application(options.m_guiHelper);
 	app->processCommandLineArgs(argc, argv);
 
-	app->initPhysics();
-	app->resetCamera();
+	app->initialise();
 
 	b3Clock clock;
 
