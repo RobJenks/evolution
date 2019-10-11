@@ -21,6 +21,7 @@ void Application::initialise()
 	initialise_temporary_objects();
 
 	reset_camera();
+	generate_graphics_objects();
 }
 
 void Application::initialise_temporary_objects()
@@ -66,7 +67,8 @@ void Application::stepSimulation(float deltaTime)
 			m_spring_constraint->getTranslationalLimitMotor()->m_targetVelocity[0] *= -1;
 	}
 
-	std::cout << "Step; dt = " << deltaTime << ", target_vel = " << m_spring_constraint->getTranslationalLimitMotor()->m_targetVelocity[0] << "\n";
+	if (m_spring_constraint)
+		std::cout << "Step; dt = " << deltaTime << ", target_vel = " << m_spring_constraint->getTranslationalLimitMotor()->m_targetVelocity[0] << "\n";
 }
 
 btRigidBody *Application::create_ground()
