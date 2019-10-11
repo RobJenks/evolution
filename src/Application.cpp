@@ -13,6 +13,27 @@ Application::Application(GUIHelperInterface *gui)
 {
 }
 
+
+void Application::initialise()
+{
+	initPhysics();		// Simulation interface
+	
+	initialise_temporary_objects();
+
+	reset_camera();
+}
+
+void Application::initialise_temporary_objects()
+{
+	// Create simulation objects
+	auto ground = create_ground();
+	auto objects = create_objects(5);
+	auto constraints = create_constraints(objects);
+	//auto slider = create_slider_constraint(objects[0], objects.back());
+	m_spring_constraint = create_spring_constraint(objects[0], objects.back());
+}
+
+
 void Application::initPhysics()
 {
 	// Set up empty world and debug drawing
@@ -23,16 +44,11 @@ void Application::initPhysics()
 
 	if (m_dynamicsWorld->getDebugDrawer())
 		m_dynamicsWorld->getDebugDrawer()->setDebugMode(btIDebugDraw::DBG_DrawWireframe + btIDebugDraw::DBG_DrawConstraints + btIDebugDraw::DBG_DrawConstraintLimits);
+}
 
-	// Create simulation objects
-	auto ground = create_ground();
-	auto objects = create_objects(5);
-	auto constraints = create_constraints(objects);
-	//auto slider = create_slider_constraint(objects[0], objects.back());
-	m_spring_constraint = create_spring_constraint(objects[0], objects.back());
-
-	// Initialise the debug visualisation
-	reset_camera();
+void Application::generate_graphics_objects()
+{
+	// TODO: need to reset first?
 	m_guiHelper->autogenerateGraphicsObjects(m_dynamicsWorld);
 }
 
@@ -92,7 +108,7 @@ std::vector<btRigidBody *> Application::create_objects(size_t count)
 
 		objects.push_back(createRigidBody(mass, transform, objectShape));
 	}
-
+	
 	return objects;
 }
 
@@ -169,9 +185,3 @@ void Application::reset_camera()
 Application::~Application()
 {
 }
-
-
-//CommonExampleInterface *TestExampleCreateFunc(CommonExampleOptions &options)
-//{
-//	return new TestExample(options.m_guiHelper);
-//}

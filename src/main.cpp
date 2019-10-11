@@ -19,6 +19,7 @@
 
 #include "btBulletDynamicsCommon.h"
 #include "CommonInterfaces/CommonExampleInterface.h"
+#include "CommonInterfaces/CommonGraphicsAppInterface.h"
 #include "CommonInterfaces/CommonGUIHelperInterface.h"
 #include "OpenGLWindow/SimpleOpenGL3App.h"
 #include "OpenGLWindow/GwenOpenGL3CoreRenderer.h"
@@ -32,7 +33,7 @@
 CommonExampleInterface* app;
 
 b3MouseMoveCallback prevMouseMoveCallback = 0;
-static void OnMouseMove(float x, float y)
+static void on_mouse_move(float x, float y)
 {
 	bool handled = false;
 	handled = app->mouseMoveCallback(x, y);
@@ -44,7 +45,7 @@ static void OnMouseMove(float x, float y)
 }
 
 b3MouseButtonCallback prevMouseButtonCallback = 0;
-static void OnMouseDown(int button, int state, float x, float y)
+static void on_mouse_down(int button, int state, float x, float y)
 {
 	bool handled = false;
 
@@ -56,19 +57,39 @@ static void OnMouseDown(int button, int state, float x, float y)
 	}
 }
 
+b3KeyboardCallback prevKeyboardCallback = 0;
+static void on_keyboard_event(int keycode, int state)
+{
+	bool handled = false;
+
+	handled = app->keyboardCallback(keycode, state);
+	if (!handled)
+	{
+		if (prevKeyboardCallback)
+			prevKeyboardCallback(keycode, state);
+	}
+}
+
+void initialise_callbacks(CommonGraphicsApp *app)
+{
+
+	prevMouseButtonCallback = app->m_window->getMouseButtonCallback();
+	prevMouseMoveCallback = app->m_window->getMouseMoveCallback();
+	prevKeyboardCallback = app->m_window->getKeyboardCallback();
+
+	app->m_window->setMouseButtonCallback((b3MouseButtonCallback)on_mouse_down);
+	app->m_window->setMouseMoveCallback((b3MouseMoveCallback)on_mouse_move);
+	app->m_window->setKeyboardCallback((b3KeyboardCallback)on_keyboard_event);
+}
+
 int main(int argc, char* argv[])
 {
 	SimpleOpenGL3App* gl_app = new SimpleOpenGL3App("Evolution", 1024, 768, true);
-
-	prevMouseButtonCallback = gl_app->m_window->getMouseButtonCallback();
-	prevMouseMoveCallback = gl_app->m_window->getMouseMoveCallback();
-
-	gl_app->m_window->setMouseButtonCallback((b3MouseButtonCallback)OnMouseDown);
-	gl_app->m_window->setMouseMoveCallback((b3MouseMoveCallback)OnMouseMove);
+	initialise_callbacks(gl_app);
 
 	OpenGLGuiHelper gui(gl_app, false);
 	CommonExampleOptions options(&gui);
-
+	
 	app = new Application(options.m_guiHelper);
 	app->processCommandLineArgs(argc, argv);
 

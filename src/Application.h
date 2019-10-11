@@ -13,11 +13,18 @@ public:
 
 	Application(GUIHelperInterface* gui);
 
+	// Simulation event handlers
 	virtual void initPhysics();
 	virtual void stepSimulation(float deltaTime);
 	virtual void renderScene();
-	virtual ~Application();
 
+	// Initialisation
+	void initialise();
+	void initialise_temporary_objects();
+
+	void generate_graphics_objects();
+
+	// Temporary: create sample simulation objects
 	btRigidBody* create_ground();
 	std::vector<btRigidBody*> create_objects(size_t count);
 	std::vector<btTypedConstraint*> create_constraints(const std::vector<btRigidBody*>& objects);
@@ -26,9 +33,8 @@ public:
 	
 	void reset_camera();
 
+	virtual ~Application();
+
 private:
 	btGeneric6DofSpring2Constraint* m_spring_constraint;
 };
-
-
-//class CommonExampleInterface* TestExampleCreateFunc(struct CommonExampleOptions& options);
