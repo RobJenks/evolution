@@ -26,7 +26,7 @@
 #include "ExampleBrowser/OpenGLGuiHelper.h"
 #include "Utils/b3Clock.h"
 
-#include "src/Application.h"
+#include "Application.h"
 
 
 CommonExampleInterface* app;
