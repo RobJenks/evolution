@@ -1,0 +1,9 @@
+# IDE config
+/.vs/*
+/*.vcxproj.*
+
+# Exclude intermediate and build output
+/Debug/*
+/Release/*
+/x64/*
+
