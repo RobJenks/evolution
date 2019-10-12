@@ -6,10 +6,15 @@
 #include "CommonInterfaces/CommonRigidBodyBase.h"
 #include "CommonInterfaces/CommonParameterInterface.h"
 
+#include "Genetics/Dna.h"
+#include "Genetics/DnaWriter.h"
+#include "Entity/Entity.h"
+
 
 Application::Application(GUIHelperInterface *gui)
-	: CommonRigidBodyBase(gui),
-	  m_spring_constraint(nullptr)
+	: 
+	CommonRigidBodyBase(gui),
+	m_spring_constraint(nullptr)
 {
 }
 
