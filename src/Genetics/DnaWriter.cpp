@@ -6,13 +6,13 @@ DnaWriter::DnaWriter(const Entity& source)
 {
 }
 
-std::unique_ptr<Dna> DnaWriter::write() const
+DnaWriteResult DnaWriter::write() const
 {
 	auto d = std::make_unique<Dna>();	
 
 	write_value<float>(*d.get(), 12.34f);
 	write_value<float>(*d.get(), 56.78f);
 
-	return std::move(d);
+	return DnaWriteResult::Ok(std::move(d));
 }
 

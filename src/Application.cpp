@@ -10,6 +10,11 @@
 #include "Genetics/DnaWriter.h"
 #include "Entity/Entity.h"
 
+#include "Util/Result.h"
+#include "Genetics/DnaWriter.h"
+#include "Genetics/DnaReader.h"
+#include "Genetics/Dna.h"
+#include "Entity/Entity.h"
 
 Application::Application(GUIHelperInterface *gui)
 	: 

@@ -5,16 +5,23 @@ class Token
 public:
 
 	typedef unsigned int Type;
-	static const size_t	 Size = sizeof(Type);
+	static const size_t Size = sizeof(Type);
 
-	static const Type Marker		 = 0xAAAAAAAA;
-	
-	static const Type ObjectBox		 = 0xAAAABA00;
-	static const Type ObjectCapsule  = 0xAAAABA01;
-	static const Type ObjectCone	 = 0xAAAABA10;
-	static const Type ObjectCylinder = 0xAAAABA11;
+	enum Value : Type
+	{
+		Marker					= 0xAAAAAAAA,
+
+		SymmetricBilateral		= 0xAAAABB00,		// Z
+		SymmetricDorsoVentral	= 0xAAAABB11,		// Y
+		SymmetricLongitudinal	= 0xAAAABB22,		// X
+
+		ObjectBox				= 0xAAAABA00,
+		ObjectCapsule			= 0xAAAABA01,
+		ObjectCone				= 0xAAAABA10,
+		ObjectCylinder			= 0xAAAABA11
 
 
+	};
 
 
 

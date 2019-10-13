@@ -15,5 +15,6 @@ const Dna::Data& Dna::get_data() const
 
 std::unique_ptr<Entity> Dna::read() const
 {
-	return DnaReader(*this).read();
+	//return std::move(DnaReader(*this).read().take());
+	return std::move(DnaReader(*this)).read().get();
 }

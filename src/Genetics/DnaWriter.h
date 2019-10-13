@@ -1,7 +1,7 @@
 #pragma once
 
-#include <memory>
 #include "Dna.h"
+#include "DnaWriteResult.h"
 class Entity;
 
 class DnaWriter
@@ -10,7 +10,7 @@ public:
 
 	DnaWriter(const Entity & source);
 
-	std::unique_ptr<Dna> write() const;
+	DnaWriteResult write() const;
 
 
 private:

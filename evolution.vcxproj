@@ -114,6 +114,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(BulletDirectory)\src;$(BulletDirectory)\examples;$(BulletDirectory)\examples\ThirdPartyLibs;$(BulletDirectory)\examples\ThirdPartyLibs\glad</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -171,14 +172,18 @@
     <ClCompile Include="src\Genetics\DnaReader.cpp" />
     <ClCompile Include="src\Genetics\DnaWriter.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Util\Result.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\Entity\Entity.h" />
     <ClInclude Include="src\Genetics\Dna.h" />
     <ClInclude Include="src\Genetics\DnaReader.h" />
+    <ClInclude Include="src\Genetics\DnaReadResult.h" />
     <ClInclude Include="src\Genetics\DnaWriter.h" />
+    <ClInclude Include="src\Genetics\DnaWriteResult.h" />
     <ClInclude Include="src\Genetics\Token.h" />
+    <ClInclude Include="src\Util\Result.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

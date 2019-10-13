@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Dna.h"
+#include "DnaReadResult.h"
 class Entity;
 
 class DnaReader
@@ -9,9 +10,9 @@ public:
 
 	DnaReader(const Dna & target);
 
-	std::unique_ptr<Entity> read() const;
+	DnaReadResult read() const;
 	
-	std::unique_ptr<Entity> read(size_t start, size_t end) const;
+	DnaReadResult read(size_t start, size_t end) const;
 
 
 private:
