@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "Dna.h"
+#include "DnaWriteResult.h"
 class Entity;
 
 class DnaWriter
@@ -10,25 +11,22 @@ public:
 
 	DnaWriter(const Entity & source);
 
-	std::unique_ptr<Dna> write() const;
-
-
-private:
+	auto write() -> DnaWriteResult;
 
 	template <typename T>
-	inline void write_value(Dna& dna, T value) const
+	inline auto write_value(T value) -> void
 	{
 		unsigned char* p = (unsigned char*)&value;
 		for (size_t i = 0; i < sizeof(T); ++i)
 		{
-			dna.push_element(*(p++));
+			(*m_dna).push_element(*(p++));
 		}
 	}
 
 
 private:
 
-	const Entity & m_source;
-
+	const Entity &			m_source;
+	std::unique_ptr<Dna>	m_dna;
 
 };

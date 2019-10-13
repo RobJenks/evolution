@@ -10,15 +10,23 @@ public:
 	typedef unsigned char Element;
 	typedef std::vector<Element> Data;
 
-	Data & get_data();
-	const Data & get_data() const;
+	Dna();
+	Dna(const Dna& other);
+	Dna(Dna&& other) noexcept;
 
-	inline Data::size_type get_data_size() const { return m_data.size(); }
+	auto operator=(const Dna& other) -> Dna&;
+	auto operator=(Dna&& other) noexcept -> Dna&;
+	
+	auto get_data() -> Data&;
+	auto get_data() const -> const Data&;
 
-	std::unique_ptr<Entity> read() const;
+	inline auto get_data_size() const -> Data::size_type { return m_data.size(); }
 
-	inline void push_element(unsigned char el) { m_data.push_back(el); }
+	auto read() const -> std::unique_ptr<Entity>;
 
+	inline auto push_element(unsigned char el) -> void { m_data.push_back(el); }
+
+	~Dna();
 
 private:
 	Data m_data;

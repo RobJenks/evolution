@@ -1,13 +1,19 @@
 #include "Entity.h"
-#include "../Genetics/Dna.h"
+#include "Component.h"
 #include "../Genetics/DnaWriter.h"
+
 
 Entity::Entity()
 {
-
 }
 
-std::unique_ptr<Dna> Entity::write_dna() const
+
+auto Entity::write_dna() const -> DnaWriteResult
 {
-	return DnaWriter(*this).write();
+	return std::move(DnaWriter(*this).write());
+}
+
+
+Entity::~Entity()
+{
 }
