@@ -13,7 +13,7 @@ public:
 	inline auto is_ok() const -> bool { return m_is_ok; }
 	inline auto is_err() const -> bool { return !is_ok(); }
 
-	inline auto get() -> T { return std::get<0>(std::move(m_value)); }
+	inline auto get() -> T { return std::move(std::get<0>(m_value)); }
 	inline auto get_err() -> E { return std::get<1>(m_value); }
 
 	Result();

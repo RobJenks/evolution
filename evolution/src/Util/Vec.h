@@ -71,10 +71,14 @@ template<unsigned int N, typename T>
 auto Vec<N, T>::operator=(const Vec<N, T>& other) -> Vec<N, T>&
 {
 	m_data = other.m_data;
+
+	return *this;
 }
 
 template<unsigned int N, typename T>
 auto Vec<N, T>::operator=(Vec<N, T>&& other) noexcept -> Vec<N, T>&
 {
 	m_data = std::move(other.m_data);
+
+	return *this;
 }
