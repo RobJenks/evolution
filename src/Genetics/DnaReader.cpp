@@ -12,12 +12,12 @@ DnaReader::DnaReader(const Dna& target)
 {
 }
 
-DnaReadResult DnaReader::read() const
+auto DnaReader::read() const -> DnaReadResult
 {
 	return std::move(read(0U, m_target.get_data_size()));
 }
 
-DnaReadResult DnaReader::read(size_t start, size_t end) const
+auto DnaReader::read(size_t start, size_t end) const -> DnaReadResult
 {
 	auto entity = std::make_unique<Entity>();
 		

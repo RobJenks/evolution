@@ -9,7 +9,7 @@ public:
 
 	Entity();
 
-	DnaWriteResult write_dna() const;
+	auto write_dna() const -> DnaWriteResult;
 
 private:
 

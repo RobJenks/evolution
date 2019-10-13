@@ -3,18 +3,17 @@
 #include "../Entity/Entity.h"
 
 
-Dna::Data& Dna::get_data()
+auto Dna::get_data() -> Data&
 {
 	return m_data;
 }
 
-const Dna::Data& Dna::get_data() const
+auto Dna::get_data() const -> const Data&
 {
 	return m_data;
 }
 
-std::unique_ptr<Entity> Dna::read() const
+auto Dna::read() const -> std::unique_ptr<Entity>
 {
-	//return std::move(DnaReader(*this).read().take());
 	return std::move(DnaReader(*this)).read().get();
 }

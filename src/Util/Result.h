@@ -7,22 +7,21 @@ class Result
 {
 public:
 
-	static Result<T, E> Ok(T value);
-	static Result<T, E> Err(E err);
+	static auto Ok(T value) -> Result<T, E>;
+	static auto Err(E err) -> Result<T, E>;
 
-	inline bool is_ok() const { return m_is_ok; }
-	inline bool is_err() const { return !is_ok(); }
+	inline auto is_ok() const -> bool { return m_is_ok; }
+	inline auto is_err() const -> bool { return !is_ok(); }
 
-	inline T get() { return std::get<0>(std::move(m_value)); }
-	//inline T && take() const { return std::move(std::get<0>(std::move(m_value))); }
-	inline E get_err() { return std::get<1>(m_value); }
+	inline auto get() -> T { return std::get<0>(std::move(m_value)); }
+	inline auto get_err() -> E { return std::get<1>(m_value); }
 
 	Result();
 	Result(const Result<T, E>& other);
 	Result(Result<T, E>&& other);
 
-	Result<T, E>& operator=(const Result <T, E> & other);
-	Result<T, E>& operator=(Result <T, E> && other);
+	auto operator=(const Result <T, E> & other) -> Result<T, E>&;
+	auto operator=(Result <T, E> && other) -> Result<T, E>&;
 
 	~Result();
 
@@ -33,7 +32,7 @@ private:
 };
 
 template <typename T, typename E>
-Result<T, E> Result<T, E>::Ok(T value)
+auto Result<T, E>::Ok(T value) -> Result<T, E>
 {
 	Result<T, E> result;
 	result.m_is_ok = true;
@@ -43,7 +42,7 @@ Result<T, E> Result<T, E>::Ok(T value)
 }
 
 template <typename T, typename E>
-Result<T, E> Result<T, E>::Err(E err)
+auto Result<T, E>::Err(E err) -> Result<T, E>
 {
 	Result<T, E> result;
 	result.m_is_ok = false;
@@ -74,14 +73,14 @@ Result<T, E>::Result(Result<T, E> && other)
 }
 
 template <typename T, typename E>
-Result<T, E> & Result<T, E>::operator=(const Result<T, E>& other)
+auto Result<T, E>::operator=(const Result<T, E>& other) -> Result<T, E>&
 {
 	m_is_ok = other.m_is_ok;
 	m_value = other.m_value;
 }
 
 template <typename T, typename E>
-Result<T, E> & Result<T, E>::operator=(Result <T, E>&& other)
+auto Result<T, E>::operator=(Result <T, E>&& other) -> Result<T, E>&
 {
 	m_is_ok = other.m_is_ok;
 	m_value = std::move(other.m_value);

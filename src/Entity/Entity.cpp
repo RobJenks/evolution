@@ -6,7 +6,7 @@ Entity::Entity()
 
 }
 
-DnaWriteResult Entity::write_dna() const
+auto Entity::write_dna() const -> DnaWriteResult
 {
 	return std::move(DnaWriter(*this).write());
 }

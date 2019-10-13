@@ -6,7 +6,7 @@ DnaWriter::DnaWriter(const Entity& source)
 {
 }
 
-DnaWriteResult DnaWriter::write() const
+auto DnaWriter::write() const -> DnaWriteResult
 {
 	auto d = std::make_unique<Dna>();	
 

@@ -14,24 +14,24 @@ public:
 	Application(GUIHelperInterface* gui);
 
 	// Simulation event handlers
-	virtual void initPhysics();
-	virtual void stepSimulation(float deltaTime);
-	virtual void renderScene();
+	virtual auto initPhysics() -> void;
+	virtual auto stepSimulation(float deltaTime) -> void;
+	virtual auto renderScene() -> void;
 
 	// Initialisation
-	void initialise();
-	void initialise_temporary_objects();
+	auto initialise() -> void;
+	auto initialise_temporary_objects() -> void;
 
-	void generate_graphics_objects();
+	auto generate_graphics_objects() -> void;
 
 	// Temporary: create sample simulation objects
-	btRigidBody* create_ground();
-	std::vector<btRigidBody*> create_objects(size_t count);
-	std::vector<btTypedConstraint*> create_constraints(const std::vector<btRigidBody*>& objects);
-	btTypedConstraint* create_slider_constraint(btRigidBody* const objA, btRigidBody* const objB);
-	btGeneric6DofSpring2Constraint* create_spring_constraint(btRigidBody* const objA, btRigidBody* const objB);
+	auto create_ground() -> btRigidBody* ;
+	auto create_objects(size_t count) -> std::vector<btRigidBody*> ;
+	auto create_constraints(const std::vector<btRigidBody*>& objects) -> std::vector<btTypedConstraint*> ;
+	auto create_slider_constraint(btRigidBody* const objA, btRigidBody* const objB) -> btTypedConstraint* ;
+	auto create_spring_constraint(btRigidBody* const objA, btRigidBody* const objB) -> btGeneric6DofSpring2Constraint* ;
 	
-	void reset_camera();
+	auto reset_camera() -> void;
 
 	virtual ~Application();
 

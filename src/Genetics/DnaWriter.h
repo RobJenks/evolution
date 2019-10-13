@@ -10,13 +10,13 @@ public:
 
 	DnaWriter(const Entity & source);
 
-	DnaWriteResult write() const;
+	auto write() const-> DnaWriteResult;
 
 
 private:
 
 	template <typename T>
-	inline void write_value(Dna& dna, T value) const
+	inline auto write_value(Dna& dna, T value) const -> void
 	{
 		unsigned char* p = (unsigned char*)&value;
 		for (size_t i = 0; i < sizeof(T); ++i)

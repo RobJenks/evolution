@@ -1,9 +1,7 @@
 #pragma once
 
-class Token
+namespace Token
 {
-public:
-
 	typedef unsigned int Type;
 	static const size_t Size = sizeof(Type);
 

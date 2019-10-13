@@ -172,7 +172,6 @@
     <ClCompile Include="src\Genetics\DnaReader.cpp" />
     <ClCompile Include="src\Genetics\DnaWriter.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Util\Result.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application.h" />

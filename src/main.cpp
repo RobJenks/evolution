@@ -33,7 +33,7 @@
 Application* app;
 
 b3MouseMoveCallback prevMouseMoveCallback = 0;
-static void on_mouse_move(float x, float y)
+static auto on_mouse_move(float x, float y) -> void
 {
 	bool handled = false;
 	handled = app->mouseMoveCallback(x, y);
@@ -45,7 +45,7 @@ static void on_mouse_move(float x, float y)
 }
 
 b3MouseButtonCallback prevMouseButtonCallback = 0;
-static void on_mouse_down(int button, int state, float x, float y)
+static auto on_mouse_down(int button, int state, float x, float y) -> void
 {
 	bool handled = false;
 
@@ -58,7 +58,7 @@ static void on_mouse_down(int button, int state, float x, float y)
 }
 
 b3KeyboardCallback prevKeyboardCallback = 0;
-static void on_keyboard_event(int keycode, int state)
+static auto on_keyboard_event(int keycode, int state) -> void
 {
 	bool handled = false;
 
@@ -70,7 +70,7 @@ static void on_keyboard_event(int keycode, int state)
 	}
 }
 
-void initialise_callbacks(CommonGraphicsApp *app)
+auto initialise_callbacks(CommonGraphicsApp *app) -> void
 {
 
 	prevMouseButtonCallback = app->m_window->getMouseButtonCallback();
@@ -82,7 +82,7 @@ void initialise_callbacks(CommonGraphicsApp *app)
 	app->m_window->setKeyboardCallback((b3KeyboardCallback)on_keyboard_event);
 }
 
-int main(int argc, char* argv[])
+auto main(int argc, char* argv[]) -> int
 {
 	SimpleOpenGL3App* gl_app = new SimpleOpenGL3App("Evolution", 1024, 768, true);
 	initialise_callbacks(gl_app);

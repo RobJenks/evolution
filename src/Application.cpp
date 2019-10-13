@@ -24,7 +24,7 @@ Application::Application(GUIHelperInterface *gui)
 }
 
 
-void Application::initialise()
+auto Application::initialise() -> void
 {
 	initPhysics();		// Simulation interface
 	
@@ -34,7 +34,7 @@ void Application::initialise()
 	generate_graphics_objects();
 }
 
-void Application::initialise_temporary_objects()
+auto Application::initialise_temporary_objects() -> void
 {
 	// Create simulation objects
 	auto ground = create_ground();
@@ -45,7 +45,7 @@ void Application::initialise_temporary_objects()
 }
 
 
-void Application::initPhysics()
+auto Application::initPhysics() -> void
 {
 	// Set up empty world and debug drawing
 	m_guiHelper->setUpAxis(1);
@@ -57,13 +57,13 @@ void Application::initPhysics()
 		m_dynamicsWorld->getDebugDrawer()->setDebugMode(btIDebugDraw::DBG_DrawWireframe + btIDebugDraw::DBG_DrawConstraints + btIDebugDraw::DBG_DrawConstraintLimits);
 }
 
-void Application::generate_graphics_objects()
+auto Application::generate_graphics_objects() -> void
 {
 	// TODO: need to reset first?
 	m_guiHelper->autogenerateGraphicsObjects(m_dynamicsWorld);
 }
 
-void Application::stepSimulation(float deltaTime)
+auto Application::stepSimulation(float deltaTime) -> void
 {
 	static float timer = 0.0f;
 	timer += deltaTime;
@@ -81,7 +81,7 @@ void Application::stepSimulation(float deltaTime)
 		std::cout << "Step; dt = " << deltaTime << ", target_vel = " << m_spring_constraint->getTranslationalLimitMotor()->m_targetVelocity[0] << "\n";
 }
 
-btRigidBody *Application::create_ground()
+auto Application::create_ground() -> btRigidBody*
 {
 	btBoxShape *groundShape = createBoxShape(btVector3(50.0, 50.0, 50.0));
 
@@ -94,7 +94,7 @@ btRigidBody *Application::create_ground()
 	return createRigidBody(0.0f, groundTransform, groundShape, btVector4(0, 1, 0, 1));
 }
 
-std::vector<btRigidBody *> Application::create_objects(size_t count)
+auto Application::create_objects(size_t count) -> std::vector<btRigidBody*>
 {
 	std::vector<btRigidBody *> objects;
 
@@ -124,7 +124,7 @@ std::vector<btRigidBody *> Application::create_objects(size_t count)
 	return objects;
 }
 
-std::vector<btTypedConstraint *> Application::create_constraints(const std::vector<btRigidBody *> &objects)
+auto Application::create_constraints(const std::vector<btRigidBody *> &objects) -> std::vector<btTypedConstraint*>
 {
 	std::vector<btTypedConstraint *> constraints;
 
@@ -142,7 +142,7 @@ std::vector<btTypedConstraint *> Application::create_constraints(const std::vect
 	return constraints;
 }
 
-btTypedConstraint *Application::create_slider_constraint(btRigidBody *const objA, btRigidBody *const objB)
+auto Application::create_slider_constraint(btRigidBody *const objA, btRigidBody *const objB) -> btTypedConstraint*
 {
 	btTransform transform;
 	transform.setIdentity();
@@ -157,7 +157,7 @@ btTypedConstraint *Application::create_slider_constraint(btRigidBody *const objA
 	return slider;
 }
 
-btGeneric6DofSpring2Constraint *Application::create_spring_constraint(btRigidBody *const objA, btRigidBody *const objB)
+auto Application::create_spring_constraint(btRigidBody *const objA, btRigidBody *const objB) -> btGeneric6DofSpring2Constraint*
 {
 	static int index = -1;
 	index += 1;
@@ -184,12 +184,12 @@ btGeneric6DofSpring2Constraint *Application::create_spring_constraint(btRigidBod
 	return spring;
 }
 
-void Application::renderScene()
+auto Application::renderScene() -> void
 {
 	CommonRigidBodyBase::renderScene();
 }
 
-void Application::reset_camera()
+auto Application::reset_camera() -> void
 {
 	m_guiHelper->resetCamera(4.0f, 52.0f, -35.0f, 0.0f, 0.0f, 0.0f);
 }

@@ -10,14 +10,14 @@ public:
 	typedef unsigned char Element;
 	typedef std::vector<Element> Data;
 
-	Data & get_data();
-	const Data & get_data() const;
+	auto get_data() -> Data&;
+	auto get_data() const -> const Data&;
 
-	inline Data::size_type get_data_size() const { return m_data.size(); }
+	inline auto get_data_size() const -> Data::size_type { return m_data.size(); }
 
-	std::unique_ptr<Entity> read() const;
+	auto read() const -> std::unique_ptr<Entity>;
 
-	inline void push_element(unsigned char el) { m_data.push_back(el); }
+	inline auto push_element(unsigned char el) -> void { m_data.push_back(el); }
 
 
 private:
