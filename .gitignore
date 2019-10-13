@@ -1,9 +1,13 @@
 # IDE config
-/.vs/*
-/*.vcxproj.*
+/packages/*
+**/.vs/*
+**/*.vcxproj.*
 
 # Exclude intermediate and build output
-/Debug/*
-/Release/*
-/x64/*
+**/Debug/*
+**/Release/*
+**/x64/*
+
+# Test output
+test-details.xml
 

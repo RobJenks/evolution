@@ -9,7 +9,7 @@
 struct Application : public CommonRigidBodyBase
 {
 public:
-	const btVector3 OBJECT_SIZE = btVector3(0.25, 0.05, 0.05);
+	const btVector3 OBJECT_SIZE = btVector3(0.25f, 0.05f, 0.05f);
 
 	Application(GUIHelperInterface* gui);
 
