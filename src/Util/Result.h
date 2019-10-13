@@ -18,10 +18,10 @@ public:
 
 	Result();
 	Result(const Result<T, E>& other);
-	Result(Result<T, E>&& other);
+	Result(Result<T, E>&& other) noexcept;
 
 	auto operator=(const Result <T, E> & other) -> Result<T, E>&;
-	auto operator=(Result <T, E> && other) -> Result<T, E>&;
+	auto operator=(Result <T, E> && other) noexcept -> Result<T, E>&;
 
 	~Result();
 
@@ -65,7 +65,7 @@ Result<T, E>::Result(const Result<T, E> & other)
 }
 
 template <typename T, typename E>
-Result<T, E>::Result(Result<T, E> && other)
+Result<T, E>::Result(Result<T, E> && other) noexcept
 	:
 	m_is_ok(other.m_is_ok),
 	m_value(std::move(other.m_value))
@@ -80,7 +80,7 @@ auto Result<T, E>::operator=(const Result<T, E>& other) -> Result<T, E>&
 }
 
 template <typename T, typename E>
-auto Result<T, E>::operator=(Result <T, E>&& other) -> Result<T, E>&
+auto Result<T, E>::operator=(Result <T, E>&& other) noexcept -> Result<T, E>&
 {
 	m_is_ok = other.m_is_ok;
 	m_value = std::move(other.m_value);

@@ -1,18 +1,20 @@
+#include <algorithm>
 #include "DnaWriter.h"
+#include "../Entity/Entity.h"
+#include "../Entity/Component.h"
 
 DnaWriter::DnaWriter(const Entity& source)
 	:
-	m_source(source)
+	m_source(source),
+	m_dna(std::make_unique<Dna>())
 {
 }
 
-auto DnaWriter::write() const -> DnaWriteResult
+auto DnaWriter::write() -> DnaWriteResult
 {
-	auto d = std::make_unique<Dna>();	
+	const auto & comp = m_source.components();
+	std::for_each(comp.cbegin(), comp.cend(), [this](const auto & c) { c.get()->write_dna(*this); });
 
-	write_value<float>(*d.get(), 12.34f);
-	write_value<float>(*d.get(), 56.78f);
-
-	return DnaWriteResult::Ok(std::move(d));
+	return DnaWriteResult::Ok(std::move(m_dna));
 }
 

@@ -167,7 +167,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\Entity\Component.cpp" />
     <ClCompile Include="src\Entity\Entity.cpp" />
+    <ClCompile Include="src\Entity\Object.cpp" />
+    <ClCompile Include="src\Entity\ObjectBox.cpp" />
     <ClCompile Include="src\Genetics\Dna.cpp" />
     <ClCompile Include="src\Genetics\DnaReader.cpp" />
     <ClCompile Include="src\Genetics\DnaWriter.cpp" />
@@ -175,7 +178,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application.h" />
+    <ClInclude Include="src\Entity\Component.h" />
+    <ClInclude Include="src\Entity\ComponentId.h" />
     <ClInclude Include="src\Entity\Entity.h" />
+    <ClInclude Include="src\Entity\Object.h" />
+    <ClInclude Include="src\Entity\ObjectBox.h" />
     <ClInclude Include="src\Genetics\Dna.h" />
     <ClInclude Include="src\Genetics\DnaReader.h" />
     <ClInclude Include="src\Genetics\DnaReadResult.h" />
@@ -183,6 +190,7 @@
     <ClInclude Include="src\Genetics\DnaWriteResult.h" />
     <ClInclude Include="src\Genetics\Token.h" />
     <ClInclude Include="src\Util\Result.h" />
+    <ClInclude Include="src\Util\Vec.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

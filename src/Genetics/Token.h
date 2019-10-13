@@ -5,7 +5,7 @@ namespace Token
 	typedef unsigned int Type;
 	static const size_t Size = sizeof(Type);
 
-	enum Value : Type
+	enum class Value : Type
 	{
 		Marker					= 0xAAAAAAAA,
 

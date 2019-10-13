@@ -10,6 +10,13 @@ public:
 	typedef unsigned char Element;
 	typedef std::vector<Element> Data;
 
+	Dna();
+	Dna(const Dna& other);
+	Dna(Dna&& other) noexcept;
+
+	auto operator=(const Dna& other) -> Dna&;
+	auto operator=(Dna&& other) noexcept -> Dna&;
+	
 	auto get_data() -> Data&;
 	auto get_data() const -> const Data&;
 
@@ -19,6 +26,7 @@ public:
 
 	inline auto push_element(unsigned char el) -> void { m_data.push_back(el); }
 
+	~Dna();
 
 private:
 	Data m_data;
