@@ -66,11 +66,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Genetics\DnaReadWriteFixtures.cpp" />
     <ClCompile Include="src\Genetics\TestDnaReader.cpp" />
     <ClCompile Include="src\Genetics\TestDnaWriter.cpp" />
     <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Genetics\DnaReadWriteFixtures.h" />
+    <ClInclude Include="src\Genetics\TestDnaReader.h" />
     <ClInclude Include="src\Genetics\TestDnaWriter.h" />
     <ClInclude Include="src\test.h" />
   </ItemGroup>

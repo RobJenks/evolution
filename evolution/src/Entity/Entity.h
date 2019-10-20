@@ -18,6 +18,8 @@ public:
 
 	auto write_dna() const -> DnaWriteResult;
 
+	auto operator==(const Entity& other) const -> bool;
+
 	~Entity();
 
 private:

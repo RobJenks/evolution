@@ -14,6 +14,8 @@ public:
 	Dna(const Dna& other);
 	Dna(Dna&& other) noexcept;
 
+	static auto of(Data data) -> std::unique_ptr<Dna>;
+
 	auto operator=(const Dna& other) -> Dna&;
 	auto operator=(Dna&& other) noexcept -> Dna&;
 	
@@ -27,6 +29,10 @@ public:
 	inline auto push_element(unsigned char el) -> void { m_data.push_back(el); }
 
 	~Dna();
+
+private:
+
+	auto replace_data(Data data) -> void;
 
 private:
 	Data m_data;

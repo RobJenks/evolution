@@ -23,6 +23,8 @@ public:
 	inline auto get(size_t ix) const -> T { return m_data[ix]; }
 	inline auto set(size_t ix, T&& val) -> void { m_data[ix] = val; }
 
+	auto operator==(const Vec& other) const -> bool;
+
 private:
 
 	std::array<T, N> m_data;
@@ -81,4 +83,10 @@ auto Vec<N, T>::operator=(Vec<N, T>&& other) noexcept -> Vec<N, T>&
 	m_data = std::move(other.m_data);
 
 	return *this;
+}
+
+template <unsigned int N, typename T>
+auto Vec<N, T>::operator==(const Vec<N, T>& other) const -> bool
+{
+	return m_data == other.m_data;
 }

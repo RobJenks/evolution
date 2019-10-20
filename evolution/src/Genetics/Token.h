@@ -1,5 +1,8 @@
 #pragma once
 
+#include <memory>
+class Component;
+
 namespace Token
 {
 	typedef unsigned int Type;
@@ -20,6 +23,8 @@ namespace Token
 
 
 	};
+
+	//static auto create_component(Value token) -> std::unique_ptr<Component>;
 
 
 

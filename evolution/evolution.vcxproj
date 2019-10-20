@@ -149,6 +149,7 @@
     <ClCompile Include="src\Genetics\Dna.cpp" />
     <ClCompile Include="src\Genetics\DnaReader.cpp" />
     <ClCompile Include="src\Genetics\DnaWriter.cpp" />
+    <ClCompile Include="src\Genetics\Token.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>

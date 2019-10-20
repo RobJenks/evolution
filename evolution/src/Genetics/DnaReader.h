@@ -14,10 +14,13 @@ public:
 	
 	auto read(size_t start, size_t end) const -> DnaReadResult;
 
-
-private:
-
 	inline auto can_read(size_t elements) const -> bool { return (m_read_point + elements) <= m_target.get_data_size(); }
+
+	template <typename T>
+	inline auto can_read_into(T obj) const -> bool { return can_read(sizeof(obj)); }
+	
+	template <typename T>
+	inline auto can_read_type() const -> bool { return can_read(sizeof(T)); }
 
 	template <typename T>
 	inline auto read_value() const -> T
@@ -27,6 +30,11 @@ private:
 		return *((T*)p);
 	}
 
+	template <typename T>
+	inline auto read_into(T& obj) const -> void
+	{
+		obj = read_value<T>();
+	}
 
 private:
 
