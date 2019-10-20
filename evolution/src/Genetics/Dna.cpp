@@ -1,3 +1,4 @@
+#include <memory>
 #include "Dna.h"
 #include "DnaReader.h"
 #include "../Entity/Entity.h"
@@ -5,6 +6,14 @@
 
 Dna::Dna()
 {
+}
+
+auto Dna::of(Data data) -> std::unique_ptr<Dna>
+{
+	auto dna = std::make_unique<Dna>();
+	dna.get()->replace_data(data);
+
+	return dna;
 }
 
 auto Dna::get_data() -> Data&
@@ -15,6 +24,11 @@ auto Dna::get_data() -> Data&
 auto Dna::get_data() const -> const Data&
 {
 	return m_data;
+}
+
+auto Dna::replace_data(Data data) -> void
+{
+	m_data = data;
 }
 
 auto Dna::read() const -> std::unique_ptr<Entity>
